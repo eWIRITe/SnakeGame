@@ -16,14 +16,28 @@ public class SnakeScript : NetworkBehaviour
 
     public GameObject PicePref;
 
+    public int ClientNumber;
 
     public void Start()
     {
         if (!isLocalPlayer) { return; }
 
+        ClientNumber = GameManager.NumberOfClients;
+        GameManager.NumberOfClients += 1;
+        if(ClientNumber == 0)
+        {
+            GameManager.Player1.Add(gameObject.transform);
+        }
+        else if(ClientNumber == 1)
+        {
+            GameManager.Player2.Add(gameObject.transform);
+        }
+        
+
         for (int u = 0; u < startSize; u++)
         {
-            AddPice();
+            GameObject.Find("GameManager").GetComponent<GameManager>().AddSnakePice(ClientNumber, PicePref);
+            Debug.Log("Adding");
         }
     }
 
@@ -32,43 +46,10 @@ public class SnakeScript : NetworkBehaviour
     {
         if(!isLocalPlayer) { return; }
 
-        
+        GameObject.Find("GameManager").GetComponent<GameManager>().MoovePices(ClientNumber);
 
-        for(int i = 0; i < Pices.Count; i++)
-        {
-            Transform thisObj = Pices[i];
+        gameObject.transform.Translate(0, Speed * Time.deltaTime, 0);
 
-            if (i == 0)
-            {
-                thisObj.transform.Translate(0, Speed * Time.deltaTime, 0);
-
-                thisObj.Rotate(0, 0, Input.GetAxis("Horizontal") * RotationSpeed * -1);
-            }
-            else
-            {
-
-                Transform lastObj = Pices[i-1];
-
-                Vector2 direction = lastObj.transform.position - thisObj.transform.position;
-
-                thisObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
-
-                float Dis = Vector2.Distance(lastObj.position, thisObj.position);
-
-                if (MaxDistance < Dis) { thisObj.transform.Translate(0, Dis - MaxDistance, 0); }
-            }
-
-        }
-        
-    }
-
-    [Command]
-    public void AddPice()
-    {
-        var newObj =  Instantiate(PicePref);
-
-        Pices.Add(newObj.transform);
-
-        NetworkServer.Spawn(newObj);
+        gameObject.transform.Rotate(0, 0, Input.GetAxis("Horizontal") * RotationSpeed * -1);
     }
 }
