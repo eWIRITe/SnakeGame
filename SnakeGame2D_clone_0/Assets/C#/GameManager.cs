@@ -84,4 +84,5 @@ public class GameManager : NetworkBehaviour
 
         else { Debug.Log("sorry, it is incorrect number"); }
     }
+
 }

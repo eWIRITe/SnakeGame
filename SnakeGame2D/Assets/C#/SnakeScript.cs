@@ -63,6 +63,6 @@ public class SnakeScript : NetworkBehaviour
     public void GetNumberOfPlayers()
     {
         //не хороший костыль, to get the number of players
-        ClientNumber = GameManager.Player1.Count >= 1 ? 1 : 0;
+        ClientNumber = GameManager.Player1.Count >= 2 ? 1 : 0;
     }
 }
