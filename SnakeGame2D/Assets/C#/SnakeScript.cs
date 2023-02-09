@@ -17,8 +17,8 @@ public class SnakeScript : NetworkBehaviour
 
     public int ClientNumber;
 
-    
-    public void Awake()
+
+    public void Start()
     {
         if (!isOwned) { return; }
 
@@ -30,11 +30,11 @@ public class SnakeScript : NetworkBehaviour
         {
             GameManager.Player1.Add(gameObject.transform);
         }
-        else if(ClientNumber == 1)
+        else if (ClientNumber == 1)
         {
             GameManager.Player2.Add(gameObject.transform);
         }
-        
+
 
         for (int u = 0; u < startSize; u++)
         {
@@ -46,7 +46,7 @@ public class SnakeScript : NetworkBehaviour
 
     public void FixedUpdate()
     {
-        if(!isOwned) { return; }
+        if (!isOwned) { return; }
 
         gameObject.transform.Translate(0, Speed * Time.deltaTime, 0);
 
