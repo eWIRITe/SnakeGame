@@ -147,7 +147,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   target: {fileID: 3368224494114606571}
-  clientAuthority: 0
+  clientAuthority: 1
   syncPosition: 1
   syncRotation: 1
   syncScale: 0
@@ -174,10 +174,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  Pices:
-  - {fileID: 3368224494114606571}
   Speed: 1
   RotationSpeed: 5
   startSize: 5
   MaxDistance: 0.2
   PicePref: {fileID: 1561892357912299136, guid: d818c19bd3b951e4589ffb83e269de1f, type: 3}
+  ClientNumber: 0

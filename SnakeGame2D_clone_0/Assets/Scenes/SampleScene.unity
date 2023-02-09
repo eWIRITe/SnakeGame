@@ -493,7 +493,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  CountOfPlayers: 0
 --- !u!114 &2008295818
 MonoBehaviour:
   m_ObjectHideFlags: 0
