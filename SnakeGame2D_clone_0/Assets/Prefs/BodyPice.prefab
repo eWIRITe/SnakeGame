@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6762623328544639376}
   - component: {fileID: 7556683685481199138}
   m_Layer: 0
-  m_Name: Square (7)
+  m_Name: BodyPice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

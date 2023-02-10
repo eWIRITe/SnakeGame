@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1447589460755175503}
   - component: {fileID: 2510807558011629713}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Food
   m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

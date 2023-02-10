@@ -144,6 +144,22 @@ namespace Mirror
         //    during FinishLoadScene.
         public NetworkManagerMode mode { get; private set; }
 
+
+        //lists for 2 players
+        public static List<Transform> Player1 = new List<Transform>();
+        public static List<Transform> Player2 = new List<Transform>();
+
+        //spawn food
+        public GameObject BonusPref;
+
+        public Transform pos1;
+        public Transform pos2;
+
+        public float TimeTo;
+        public float Timer;
+
+
+
         // virtual so that inheriting classes' OnValidate() can call base.OnValidate() too
         public virtual void OnValidate()
         {
@@ -226,6 +242,59 @@ namespace Mirror
         // make sure to call base.Update() when overwriting
         public virtual void Update()
         {
+            
+
+            //mooving snakes bodyes
+
+            for (int i = 1; i < Player1.Count; i++)
+            {
+                //get pices
+                Transform thisObj = Player1[i];
+                Transform lastObj = Player1[i - 1];
+
+
+                Vector2 direction = lastObj.transform.position - thisObj.transform.position;
+
+                //rotate thisObj to last object
+                thisObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+
+                //count the distance
+                float Dis = Vector2.Distance(lastObj.position, thisObj.position);
+
+                //if we do need to moove the pice, we do it
+                if (0.2f < Dis) { thisObj.transform.Translate(0, Dis - 0.2f, 0); }
+            }
+
+            for (int k = 1; k < Player2.Count; k++)
+            {
+                //get pices
+                Transform thisObj = Player2[k];
+                Transform lastObj = Player2[k - 1];
+
+
+                Vector2 direction = lastObj.transform.position - thisObj.transform.position;
+
+                //rotate thisObj to last object
+                thisObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+
+                //count the distance
+                float Dis = Vector2.Distance(lastObj.position, thisObj.position);
+
+                //if we do need to moove the pice, we do it
+                if (0.2f < Dis) { thisObj.transform.Translate(0, Dis - 0.2f, 0); }
+            }
+
+            //vood timer
+            if (Timer >= TimeTo)
+            {
+                Spawn();
+                Timer = 0;
+            }
+            else
+            {
+                Timer += Time.deltaTime;
+            }
+
             ApplyConfiguration();
         }
 
@@ -1290,6 +1359,17 @@ namespace Mirror
                 ? Instantiate(playerPrefab, startPos.position, startPos.rotation)
                 : Instantiate(playerPrefab);
 
+            if (numPlayers == 0)
+            {
+                Player1.Add(player.transform);
+            }
+
+
+            else if (numPlayers == 1)
+            {
+                Player2.Add(player.transform);
+            }
+
             // instantiating a "Player" prefab gives it the name "Player(clone)"
             // => appending the connectionId is WAY more useful for debugging!
             player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
@@ -1391,6 +1471,14 @@ namespace Mirror
 
         /// <summary>This is called when a host is stopped.</summary>
         public virtual void OnStopHost() {}
+
+
+        [Command]
+        public void Spawn()
+        {
+            GameObject H = Instantiate(BonusPref, new Vector3(UnityEngine.Random.Range(pos1.position.x, pos2.position.x), UnityEngine.Random.Range(pos1.position.y, pos2.position.y), pos1.position.z), Quaternion.identity);
+            NetworkServer.Spawn(H);
+        }
 
         // keep OnGUI even in builds. useful to debug snap interp.
         void OnGUI()

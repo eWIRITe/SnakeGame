@@ -21,7 +21,6 @@ public class TriggerScript : MonoBehaviour
             Player.GetComponent<SnakeScript>().AddPice();
             Destroy(collision.gameObject);
         }
-
     }
 }
 
