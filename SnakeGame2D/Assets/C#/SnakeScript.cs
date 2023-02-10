@@ -32,6 +32,7 @@ public class SnakeScript : NetworkBehaviour
 
         float _speed = Speed;
 
+        //make speed more if "W" pressed
         if(Input.GetKey(KeyCode.W)) 
         {
             _speed *= 2;

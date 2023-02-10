@@ -6,6 +6,7 @@ public class DeadSetActive : MonoBehaviour
 {
     public void OnQuitButton()
     {
+        //just qiut from applikation
         Application.Quit();
     }
 }
