@@ -1473,7 +1473,7 @@ namespace Mirror
         public virtual void OnStopHost() {}
 
 
-        [Command]
+        [Server]
         public void Spawn()
         {
             GameObject H = Instantiate(BonusPref, new Vector3(UnityEngine.Random.Range(pos1.position.x, pos2.position.x), UnityEngine.Random.Range(pos1.position.y, pos2.position.y), pos1.position.z), Quaternion.identity);
