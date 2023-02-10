@@ -43,3 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 3167483087
+    locked: 0
+  - name: Bonus
+    uniqueID: 3881520671
+    locked: 0
+  - name: Barier
+    uniqueID: 1367015721
+    locked: 0

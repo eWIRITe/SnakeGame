@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
+    public GameObject DeadScreen;
+
     [Server]
     public void AddSnakePice(GameObject PicePref, GameObject Player)
     {

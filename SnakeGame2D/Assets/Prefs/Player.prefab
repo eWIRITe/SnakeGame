@@ -179,7 +179,6 @@ MonoBehaviour:
   RotationSpeed: 5
   startSize: 5
   PicePref: {fileID: 1561892357912299136, guid: d818c19bd3b951e4589ffb83e269de1f, type: 3}
-  ClientNumber: 0
 --- !u!1 &8873230231356584625
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +192,8 @@ GameObject:
   - component: {fileID: 83834286554124076}
   - component: {fileID: 9136549891153415246}
   - component: {fileID: 2485630168372045804}
+  - component: {fileID: 4921994005336989964}
+  - component: {fileID: 3454272839941344608}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -305,8 +306,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fd1e24d1e0feb4d82a7b17e6228b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   Player: {fileID: 6753400581158030500}
-  DeadScreen: {fileID: 0}
+  NotActiveTimeTo: 5
 --- !u!50 &2485630168372045804
 Rigidbody2D:
   serializedVersion: 4
@@ -328,3 +332,43 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4921994005336989964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873230231356584625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 750664412
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
+--- !u!114 &3454272839941344608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873230231356584625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2cbc52526ea384ba280d13cd1a57b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  target: {fileID: 2485630168372045804}
+  clientAuthority: 0
+  syncVelocity: 1
+  clearVelocity: 0
+  velocitySensitivity: 0.1
+  syncAngularVelocity: 1
+  clearAngularVelocity: 0
+  angularVelocitySensitivity: 0.1

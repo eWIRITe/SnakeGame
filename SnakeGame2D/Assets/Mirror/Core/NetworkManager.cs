@@ -158,7 +158,8 @@ namespace Mirror
         public float TimeTo;
         public float Timer;
 
-
+        //Dead
+        public GameObject DeadScreen;
 
         // virtual so that inheriting classes' OnValidate() can call base.OnValidate() too
         public virtual void OnValidate()
@@ -1472,6 +1473,11 @@ namespace Mirror
         /// <summary>This is called when a host is stopped.</summary>
         public virtual void OnStopHost() {}
 
+        [Server]
+        public void OnDead()
+        {
+            DeadScreen.SetActive(true);
+        }
 
         [Server]
         public void Spawn()
