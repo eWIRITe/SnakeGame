@@ -155,7 +155,7 @@ MonoBehaviour:
   Speed: 1
   RotationSpeed: 5
   startSize: 5
-  PicePref: {fileID: 1561892357912299136, guid: d818c19bd3b951e4589ffb83e269de1f, type: 3}
+  PicePref: {fileID: 7372925284567810127, guid: 3b89c6444da5b6346b7698a2ac575c06, type: 3}
 --- !u!114 &4911808354588674666
 MonoBehaviour:
   m_ObjectHideFlags: 0

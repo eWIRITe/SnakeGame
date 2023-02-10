@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
-    
+    public AudioClip GetBonus;
+    public AudioSource _sourse;
+
     public void AddSnakePice(GameObject PicePref, GameObject Player)
     {
         //add the body pices to snakes
@@ -36,5 +38,6 @@ public class GameManager : NetworkBehaviour
             }
         }
 
+        _sourse.PlayOneShot(GetBonus);
     }
 }
