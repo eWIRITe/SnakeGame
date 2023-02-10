@@ -12,11 +12,13 @@ public class SnakeScript : NetworkBehaviour
 
     public GameObject PicePref;
 
+    
+
     public void Start()
     {
         if (!isOwned) { return; }
 
-        //create snake body
+        //create snake start body
         for (int u = 0; u < startSize; u++)
         {
             AddPice();
@@ -28,8 +30,15 @@ public class SnakeScript : NetworkBehaviour
     {
         if (!isOwned) { return; }
 
+        float _speed = Speed;
+
+        if(Input.GetKey(KeyCode.W)) 
+        {
+            _speed *= 2;
+        }
+
         //moove head
-        gameObject.transform.Translate(0, Speed * Time.deltaTime, 0);
+        gameObject.transform.Translate(0, _speed * Time.deltaTime, 0);
         //rotate head
         gameObject.transform.Rotate(0, 0, Input.GetAxis("Horizontal") * RotationSpeed * -1);
     }
@@ -37,6 +46,7 @@ public class SnakeScript : NetworkBehaviour
     [Command]
     public void AddPice()
     {
+        //call function on server from client
         GameObject.Find("GameManager").GetComponent<GameManager>().AddSnakePice(PicePref, gameObject);
     }
 }

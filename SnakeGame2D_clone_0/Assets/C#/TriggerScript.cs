@@ -11,30 +11,32 @@ public class TriggerScript : NetworkBehaviour
     public float NotActiveTimeTo;
     private float Timer;
 
+    private bool Dead = false;
+
     public void FixedUpdate()
     {
+        //Timer
         Timer += Time.deltaTime;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Timer >= NotActiveTimeTo) 
-        { 
+        if (Timer >= NotActiveTimeTo)
+        {
+            //if it is bonus
             if (collision.tag == "Bonus")
             {
                 Player.GetComponent<SnakeScript>().AddPice();
                 Destroy(collision.gameObject);
             }
-            else if (collision.tag == "Barier")
+
+            //if it is barier
+            else if (collision.tag == "Barier" && !Dead)
             {
-                ComDead();
+                GameObject.Find("NetworkManeger").GetComponent<NetworkManager>().OnDead();
+                Dead = true;
             }
         }
-    }
-
-    public void ComDead()
-    {
-        GameObject.Find("NetworkManeger").GetComponent<NetworkManager>().OnDead();
     }
 }
 

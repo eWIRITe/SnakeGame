@@ -1476,7 +1476,8 @@ namespace Mirror
         [Server]
         public void OnDead()
         {
-            DeadScreen.SetActive(true);
+            GameObject H = Instantiate(DeadScreen);
+            NetworkServer.Spawn(H);
         }
 
         [Server]
